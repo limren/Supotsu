@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-color: #020202;
+}
+
+/* Styling related to Navbar Component */
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 30px 0;
+    font-size: 20px;
+    letter-spacing: 2.5px;
+}
+
+.navbar .navbar-nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

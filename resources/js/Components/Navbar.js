@@ -7,33 +7,42 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
         axios
             .get("http://supotsu.test/api/logout", config)
             .then((res) => console.log(res));
+        localStorage.setItem("loggedIn", false);
         setisLoggedIn(false);
     };
     const LoggedIn = () => {
         return (
-            <div>
-                <p>Welcome back, {user.name} !</p>
+            <ul className="logged">
                 <Link to="/" onClick={() => handleLogout()}>
-                    Logout
+                    <li>HI {user.name}, LOGOUT</li>
                 </Link>
-            </div>
+            </ul>
         );
     };
     const IsNotLogged = () => {
         return (
-            <ul>
+            <ul className="not-logged">
                 <Link to="/login">
-                    <li>Log in</li>
+                    <li>LOGIN</li>
                 </Link>
                 <Link to="/register">
-                    <li>Register</li>
+                    <li>REGISTER</li>
                 </Link>
             </ul>
         );
     };
     return (
-        <div>
-            <div className="">
+        <div className="navbar">
+            <div className="navbar-logo">
+                <li>SUPOTSU</li>
+            </div>
+            <div className="navbar-nav">
+                <ul>
+                    <li>BROWSE</li>
+                    <li>CATEGORY</li>
+                </ul>
+            </div>
+            <div className="navbar-connection">
                 {isLoggedIn ? <LoggedIn /> : <IsNotLogged />}
             </div>
         </div>
