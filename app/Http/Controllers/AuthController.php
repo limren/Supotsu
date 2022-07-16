@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // public function login(Request $request) {
-    //     $request->validate(
 
-    //     )
-    // }
     public function index()
     {
         return User::all();
@@ -64,7 +60,7 @@ class AuthController extends Controller
 
         return response($response, 201);
     }
-    public function logout(Request $request)
+    public function logout()
     {
         $user = request()->user();
         $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();

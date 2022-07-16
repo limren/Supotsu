@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Articles extends Model
+class Clicks extends Model
 {
     use HasFactory;
 
-
-    protected $fillable = ["title", "content", "path", "category"];
+    protected $fillable = ["article_id", "number_clicks"];
 }
