@@ -50,9 +50,23 @@ class ArticlesController extends Controller
         $article = Articles::find($id);
         return $article->update($request->all());
     }
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $article = Articles::find($id);
         return $article->delete();
+    }
+    public function getMostClickedArticles()
+    {
+        $articles = [];
+        $articles_id = Clicks::orderBy("number_clicks", "desc")->pluck("article_id")->take(3);
+        // return $articles_id;
+        foreach ($articles_id as $article_id) {
+            array_push($articles, Articles::where("id", "=", $article_id)->first());
+        }
+        return $articles;
+    }
+    public function getMostRecentArticles()
+    {
+        return Articles::orderBy('created_at', 'desc')->take(1)->get();
     }
 }

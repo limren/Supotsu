@@ -31,4 +31,9 @@ class ClicksController extends Controller
             "number_clicks" => $click->number_clicks + 1
         ]);
     }
+    public function getNumberClicksByArticleID($article_id)
+    {
+        $click = Clicks::where("article_id", "=", $article_id)->first();
+        return $click->number_clicks;
+    }
 }

@@ -23,7 +23,7 @@ function Index() {
     }, []);
 
     return (
-        <div>
+        <div className="index">
             <Navbar
                 isLoggedIn={isLoggedIn}
                 user={user}

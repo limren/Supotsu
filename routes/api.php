@@ -37,9 +37,12 @@ Route::get("/articles", [ArticlesController::class, "index"]);
 Route::post("/articles", [ArticlesController::class, "add"]);
 Route::put("/articles/{id}", [ArticlesController::class, "update"]);
 Route::delete("/articles/{id}", [ArticlesController::class, "delete"]);
+Route::get("/articles/mostclicked", [ArticlesController::class, "getMostClickedArticles"]);
+Route::get("/articles/mostrecent", [ArticlesController::class, "getMostRecentArticles"]);
 
 // API Routing related to calculate how many times an article has been clicked on
 Route::get("/clicks", [ClicksController::class, "index"]);
 Route::post("/clicks", [ClicksController::class, "add"]);
 
 Route::put("/clicks/{article_id}", [ClicksController::class, "increment"]);
+Route::get("/clicks/{article_id}", [ClicksController::class, "getNumberClicksByArticleID"]);

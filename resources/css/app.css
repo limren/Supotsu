@@ -1,11 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
 * {
     padding: 0;
     margin: 0;
     list-style: none;
     text-decoration: none;
+    font-family: "Source Sans Pro", sans-serif;
     color: white;
 }
-
+.index {
+    width: 100%;
+    height: 100%;
+}
 body {
     background-color: #020202;
 }
@@ -26,4 +32,58 @@ body {
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+/* Home component */
+.home .news-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PopularNews component */
+
+/* RecentNews component */
+
+.recent-news ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.recent-news-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 570px;
+}
+.recent-news-body h3 {
+    font-size: 55px;
+    padding-bottom: 25px;
+    max-width: 350px;
+}
+.recent-news-body p {
+    color: grey;
+    max-width: 260px;
+}
+.recent-news-text {
+    z-index: 10;
+}
+.recent-news-img {
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+.recent-news-img img {
+    position: relative;
+    width: 320px;
+    height: auto;
+    object-fit: fill;
+}
+.recent-news-img p {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    padding: 10px;
 }
