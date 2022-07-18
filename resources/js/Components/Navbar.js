@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
+    useEffect(() => {
+        console.log(isLoggedIn);
+    }, []);
     const handleLogout = () => {
         const config = { headers: { Authorization: `Bearer ${token}` } };
         axios
             .get("http://supotsu.test/api/logout", config)
             .then((res) => console.log(res));
-        localStorage.setItem("loggedIn", false);
         setisLoggedIn(false);
     };
     const LoggedIn = () => {

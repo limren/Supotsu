@@ -5380,6 +5380,9 @@ function Navbar(_ref) {
       user = _ref.user,
       token = _ref.token,
       setisLoggedIn = _ref.setisLoggedIn;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log(isLoggedIn);
+  }, []);
 
   var handleLogout = function handleLogout() {
     var config = {
@@ -5390,7 +5393,6 @@ function Navbar(_ref) {
     axios.get("http://supotsu.test/api/logout", config).then(function (res) {
       return console.log(res);
     });
-    localStorage.setItem("loggedIn", false);
     setisLoggedIn(false);
   };
 
@@ -5670,7 +5672,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Index() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(isLoggedIn || false),
       _useState2 = _slicedToArray(_useState, 2),
       isLoggedIn = _useState2[0],
       setisLoggedIn = _useState2[1];
@@ -5687,7 +5689,7 @@ function Index() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (localStorage.getItem("loggedIn")) {
-      setisLoggedIn(localStorage.getItem("loggedIn"));
+      setisLoggedIn(JSON.parse(localStorage.getItem("loggedIn")));
     }
 
     if (localStorage.getItem("user")) {
@@ -5698,6 +5700,9 @@ function Index() {
       setToken(JSON.parse(localStorage.getItem("token")));
     }
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    localStorage.setItem("loggedIn", isLoggedIn);
+  }, [isLoggedIn]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "index",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -5711,7 +5716,9 @@ function Index() {
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Pages_Home__WEBPACK_IMPORTED_MODULE_4__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
         path: "login",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Pages_Login__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Pages_Login__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          setisLoggedIn: setisLoggedIn
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
         path: "browse",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Browse__WEBPACK_IMPORTED_MODULE_7__["default"], {})
@@ -5821,8 +5828,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Login() {
-  // const [user, setUser] = useState({});
+function Login(_ref) {
+  var setisLoggedIn = _ref.setisLoggedIn;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     email: "",
     password: ""
@@ -5832,7 +5840,7 @@ function Login() {
       setData = _useState2[1];
 
   var handleSubmit = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5844,7 +5852,7 @@ function Login() {
                   axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://supotsu.test/api/login", data).then(function (res) {
                     localStorage.setItem("user", JSON.stringify(res.data.user));
                     localStorage.setItem("token", JSON.stringify(res.data.token));
-                    localStorage.setItem("loggedIn", true);
+                    setisLoggedIn(true);
                     location.assign("http://supotsu.test/");
                   })["catch"](function (e) {
                     return console.log(e);
@@ -5863,7 +5871,7 @@ function Login() {
     }));
 
     return function handleSubmit(_x) {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 

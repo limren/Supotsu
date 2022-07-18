@@ -9,13 +9,15 @@ import Register from "./Pages/Register";
 import Article from "./Components/Article";
 import Browse from "./Components/Browse";
 function Index() {
-    const [isLoggedIn, setisLoggedIn] = useState(false);
+    const [isLoggedIn, setisLoggedIn] = useState(isLoggedIn || false);
     const [user, setUser] = useState({});
     const [token, setToken] = useState({});
+
     useEffect(() => {
         if (localStorage.getItem("loggedIn")) {
-            setisLoggedIn(localStorage.getItem("loggedIn"));
+            setisLoggedIn(JSON.parse(localStorage.getItem("loggedIn")));
         }
+
         if (localStorage.getItem("user")) {
             setUser(JSON.parse(localStorage.getItem("user")));
         }
@@ -23,6 +25,9 @@ function Index() {
             setToken(JSON.parse(localStorage.getItem("token")));
         }
     }, []);
+    useEffect(() => {
+        localStorage.setItem("loggedIn", isLoggedIn);
+    }, [isLoggedIn]);
 
     return (
         <div className="index">
@@ -34,7 +39,10 @@ function Index() {
             />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="login" element={<Login />} />
+                <Route
+                    path="login"
+                    element={<Login setisLoggedIn={setisLoggedIn} />}
+                />
                 <Route path="browse" element={<Browse />} />
                 <Route path="register" element={<Register />} />
                 <Route path="articles/:id" element={<Article />} />

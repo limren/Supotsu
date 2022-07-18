@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-function Login() {
-    // const [user, setUser] = useState({});
+function Login({ setisLoggedIn }) {
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -23,7 +22,7 @@ function Login() {
                             "token",
                             JSON.stringify(res.data.token)
                         );
-                        localStorage.setItem("loggedIn", true);
+                        setisLoggedIn(true);
                         location.assign("http://supotsu.test/");
                     })
                     .catch((e) => console.log(e));
