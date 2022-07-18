@@ -35,10 +35,11 @@ Route::post("/register", [AuthController::class, "register"]);
 // API Articles 
 Route::get("/articles", [ArticlesController::class, "index"]);
 Route::post("/articles", [ArticlesController::class, "add"]);
+Route::get("/articles/{id}", [ArticlesController::class, "getById"]);
 Route::put("/articles/{id}", [ArticlesController::class, "update"]);
 Route::delete("/articles/{id}", [ArticlesController::class, "delete"]);
-Route::get("/articles/mostclicked", [ArticlesController::class, "getMostClickedArticles"]);
-Route::get("/articles/mostrecent", [ArticlesController::class, "getMostRecentArticles"]);
+Route::get("/mostclicked", [ArticlesController::class, "getMostClickedArticles"]);
+Route::get("/mostrecent", [ArticlesController::class, "getMostRecentArticles"]);
 
 // API Routing related to calculate how many times an article has been clicked on
 Route::get("/clicks", [ClicksController::class, "index"]);

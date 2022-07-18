@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap");
 * {
     padding: 0;
     margin: 0;
@@ -8,24 +7,38 @@
     font-family: "Source Sans Pro", sans-serif;
     color: white;
 }
-.index {
+
+body {
+    background-color: #020202;
+}
+#app {
+    height: 100vh;
+}
+.index,
+.home,
+.news-nav {
     width: 100%;
     height: 100%;
 }
-body {
-    background-color: #020202;
+.index {
+    position: relative;
+}
+.home {
+    margin: 0 auto;
 }
 
 /* Styling related to Navbar Component */
 
 .navbar {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin: 30px 0;
+    margin-top: 25px;
     font-size: 20px;
     letter-spacing: 2.5px;
+    position: fixed;
 }
 
 .navbar .navbar-nav ul {
@@ -34,16 +47,53 @@ body {
     gap: 20px;
 }
 /* Home component */
+
 .home .news-nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 /* PopularNews component */
 
-/* RecentNews component */
+.popular-news {
+    display: flex;
+    flex-direction: column;
+}
 
+.popular-news h2,
+.recent-news-text h2 {
+    font-size: 16px;
+    color: #3b3b3b;
+}
+.popular-news li {
+    font-size: 30px;
+    padding: 30px 0;
+}
+
+.popular-news ul a li:nth-child(2) {
+    border-top: solid 1px #3b3b3b;
+    border-bottom: solid 1px #3b3b3b;
+}
+.news {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.news h3 {
+    min-width: 250px;
+    font-weight: 300;
+}
+.news img {
+    width: 30px;
+    height: auto;
+}
+/* RecentNews component */
+.recent-news {
+    margin-right: 50px;
+}
 .recent-news ul li {
     display: flex;
     flex-direction: row;
@@ -55,35 +105,88 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 570px;
+    min-width: 700px;
 }
 .recent-news-body h3 {
-    font-size: 55px;
+    font-size: 60px;
+    font-weight: 600;
     padding-bottom: 25px;
-    max-width: 350px;
+    max-width: 450px;
+
+    line-height: 0.8;
+    margin-top: 20px;
+    margin-bottom: 7px;
 }
 .recent-news-body p {
     color: grey;
-    max-width: 260px;
+    max-width: 320px;
 }
 .recent-news-text {
     z-index: 10;
 }
 .recent-news-img {
     position: absolute;
+    top: -60px;
     right: 0;
-    top: 15px;
 }
 .recent-news-img img {
     position: relative;
-    width: 320px;
-    height: auto;
+    height: 500px;
     object-fit: fill;
 }
-.recent-news-img p {
+.recent-news-img .img-nav {
     position: absolute;
     left: 0;
     bottom: 0;
     background-color: black;
     padding: 10px;
+}
+.img-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.img-nav p {
+    font-size: 16px;
+}
+.img-nav img {
+    width: 25px;
+    color: grey;
+    height: auto;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+/* Article component */
+.article {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 100%;
+    width: 100%;
+}
+
+.article img {
+    min-width: 300px;
+    padding: 10px;
+    height: auto;
+    object-fit: cover;
+}
+.article h2 {
+    font-size: 50px;
+}
+.article .article-content {
+    max-width: 800px;
+    font-size: 25px;
+    padding: 50px 0;
+}
+.article .article-info {
+    color: grey;
+}
+.article div {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
 }

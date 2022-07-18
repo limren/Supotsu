@@ -34,11 +34,15 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
     return (
         <div className="navbar">
             <div className="navbar-logo">
-                <li>SUPOTSU</li>
+                <li>
+                    <Link to="/">SUPOTSU</Link>
+                </li>
             </div>
             <div className="navbar-nav">
                 <ul>
-                    <li>BROWSE</li>
+                    <li>
+                        <Link to="/browse">BROWSE</Link>
+                    </li>
                     <li>CATEGORY</li>
                 </ul>
             </div>

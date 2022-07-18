@@ -55,6 +55,10 @@ class ArticlesController extends Controller
         $article = Articles::find($id);
         return $article->delete();
     }
+    public function getById($id)
+    {
+        return Articles::find($id);
+    }
     public function getMostClickedArticles()
     {
         $articles = [];

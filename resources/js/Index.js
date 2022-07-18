@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import Register from "./Pages/Register";
+import Article from "./Components/Article";
+import Browse from "./Components/Browse";
 function Index() {
     const [isLoggedIn, setisLoggedIn] = useState(false);
     const [user, setUser] = useState({});
@@ -32,8 +34,10 @@ function Index() {
             />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="login" element={<Login />} />
+                <Route path="browse" element={<Browse />} />
+                <Route path="register" element={<Register />} />
+                <Route path="articles/:id" element={<Article />} />
             </Routes>
         </div>
     );
