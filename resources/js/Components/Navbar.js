@@ -45,7 +45,10 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
                     <li>
                         <Link to="/browse">BROWSE</Link>
                     </li>
-                    <li>CATEGORY</li>
+
+                    <li>
+                        <Link to="/category">CATEGORY</Link>
+                    </li>
                 </ul>
             </div>
             <div className="navbar-connection">

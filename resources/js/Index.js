@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Register from "./Pages/Register";
 import Article from "./Components/Article";
 import Browse from "./Components/Browse";
+import Category from "./Components/Category";
 function Index() {
     const [isLoggedIn, setisLoggedIn] = useState(isLoggedIn || false);
     const [user, setUser] = useState({});
@@ -45,6 +46,7 @@ function Index() {
                 />
                 <Route path="browse" element={<Browse />} />
                 <Route path="register" element={<Register />} />
+                <Route path="category" element={<Category />} />
                 <Route path="articles/:id" element={<Article />} />
             </Routes>
         </div>

@@ -5,7 +5,7 @@ function RecentNews() {
     const [recentNews, setRecentNews] = useState([]);
     useEffect(() => {
         axios
-            .get("http://supotsu.test/api/mostrecent")
+            .get("http://supotsu.test/api/articles/mostrecent")
             .then((res) => setRecentNews(res.data));
     }, []);
     return (
@@ -19,7 +19,14 @@ function RecentNews() {
                                     <div className="recent-news-text">
                                         <h2>LATEST ARTICLE</h2>
                                         <h3>{news.title}</h3>
-                                        <p>{news.content}</p>
+                                        <p>
+                                            {news.content
+                                                ? `${news.content.slice(
+                                                      0,
+                                                      150
+                                                  )}...`
+                                                : ""}
+                                        </p>
                                     </div>
                                     <div className="recent-news-img">
                                         <img

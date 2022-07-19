@@ -73,4 +73,8 @@ class ArticlesController extends Controller
     {
         return Articles::orderBy('created_at', 'desc')->take(1)->get();
     }
+    public function getByCategory($category)
+    {
+        return Articles::query("category", "=", $category)->get();
+    }
 }

@@ -14,19 +14,17 @@ body {
 #app {
     height: 100vh;
 }
-.index,
 .home,
 .news-nav {
     width: 100%;
     height: 100%;
 }
-.index {
-    position: relative;
-}
-.home {
-    margin: 0 auto;
-}
 
+.index {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 /* Styling related to Navbar Component */
 
 .navbar {
@@ -38,7 +36,6 @@ body {
     margin-top: 25px;
     font-size: 20px;
     letter-spacing: 2.5px;
-    position: fixed;
 }
 
 .navbar .navbar-nav ul {
@@ -72,10 +69,6 @@ body {
     padding: 30px 0;
 }
 
-.popular-news ul a li:nth-child(2) {
-    border-top: solid 1px #3b3b3b;
-    border-bottom: solid 1px #3b3b3b;
-}
 .news {
     display: flex;
     flex-direction: row;
@@ -84,7 +77,12 @@ body {
 }
 .news h3 {
     min-width: 250px;
+    max-width: 470px;
     font-weight: 300;
+}
+.popular-news ul a:nth-child(2) li {
+    border-top: solid 1px #3b3b3b;
+    border-bottom: solid 1px #3b3b3b;
 }
 .news img {
     width: 30px;
@@ -164,8 +162,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 50px;
-    height: 100%;
-    width: 100%;
 }
 
 .article img {
@@ -210,14 +206,13 @@ body {
 .browse-article {
     display: flex;
     flex-direction: row;
-    align-items: center;
     margin: 35px 32px;
     background-color: #181d2b;
 }
 .browse-article-info {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    align-content: space-between;
     min-width: 800px;
     text-align: center;
     padding: 20px 0;
@@ -228,6 +223,9 @@ body {
 .browse-article-info h2 {
     color: white;
     font-weight: 500;
+}
+.browse-article-info div p {
+    font-weight: 400;
 }
 .browse-article-info .article-content {
     max-width: 800px;
@@ -243,4 +241,124 @@ body {
     padding-top: 10px;
     color: #dd2124;
     font-size: 14px;
+}
+/* Category component */
+.input-search {
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all 0.5s ease-in-out;
+    background-color: #22a6b3;
+    padding-right: 40px;
+    color: #fff;
+}
+.input-search::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+}
+.btn-search {
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: #ffffff;
+    background-color: transparent;
+    pointer-events: painted;
+}
+.btn-search:focus ~ .input-search {
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.input-search:focus {
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+
+.btn-search img {
+    width: 30px;
+    height: auto;
+}
+
+:root {
+    --rad: 0.7rem;
+    --dur: 0.3s;
+    --color-dark: #2f2f2f;
+    --color-light: #fff;
+    --color-brand: #57bd84;
+    --font-fam: "Lato", sans-serif;
+    --height: 2.5rem;
+    --btn-width: 6rem;
+    --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+
+form {
+    position: relative;
+    width: 15rem;
+    background: var(--color-brand);
+    border-radius: var(--rad);
+}
+input,
+button {
+    height: var(--height);
+    font-family: var(--font-fam);
+    border: 0;
+    color: var(--color-dark);
+    font-size: 1.3rem;
+}
+input[type="search"] {
+    outline: 0;
+    width: 100%;
+    background: var(--color-light);
+    padding: 0 1.6rem;
+    border-radius: var(--rad);
+    appearance: none;
+    transition: all var(--dur) var(--bez);
+    transition-property: width, border-radius;
+    z-index: 1;
+    position: relative;
+}
+button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--btn-width);
+    font-weight: bold;
+    background: var(--color-brand);
+    border-radius: 0 var(--rad) var(--rad) 0;
+}
+input:not(:placeholder-shown) {
+    border-radius: var(--rad) 0 0 var(--rad);
+    width: calc(100% - var(--btn-width));
+}
+input:not(:placeholder-shown) + button {
+    display: block;
+}
+label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
 }

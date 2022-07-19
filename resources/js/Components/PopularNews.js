@@ -5,7 +5,7 @@ function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
     useEffect(() => {
         axios
-            .get("http://supotsu.test/api/mostclicked")
+            .get("http://supotsu.test/api/articles/mostclicked")
             .then((res) => setPopularNews(res.data));
     }, []);
 

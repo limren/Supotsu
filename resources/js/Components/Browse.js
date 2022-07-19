@@ -27,8 +27,8 @@ function Browse() {
                                                   )}... Click to read more !`
                                                 : article.content}
                                         </p>
-                                        <a>{article.created_at.slice(0, 10)}</a>
                                     </div>
+                                    <a>{article.created_at.slice(0, 10)}</a>
                                     <p className="article-category">
                                         {article.category.toLowerCase()}
                                     </p>
