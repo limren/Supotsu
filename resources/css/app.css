@@ -362,3 +362,13 @@ label {
     width: 1px;
     overflow: hidden;
 }
+.category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.category-main-article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

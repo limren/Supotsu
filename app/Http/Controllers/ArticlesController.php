@@ -63,7 +63,6 @@ class ArticlesController extends Controller
     {
         $articles = [];
         $articles_id = Clicks::orderBy("number_clicks", "desc")->pluck("article_id")->take(3);
-        // return $articles_id;
         foreach ($articles_id as $article_id) {
             array_push($articles, Articles::where("id", "=", $article_id)->first());
         }
@@ -75,6 +74,6 @@ class ArticlesController extends Controller
     }
     public function getByCategory($category)
     {
-        return Articles::query("category", "=", $category)->get();
+        return Articles::where("category", "LIKE", "%{$category}%")->get();
     }
 }

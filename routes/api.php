@@ -35,8 +35,8 @@ Route::post("/register", [AuthController::class, "register"]);
 // API Articles 
 Route::get("/articles", [ArticlesController::class, "index"]);
 Route::post("/articles", [ArticlesController::class, "add"]);
-Route::get("articles/mostclicked", [ArticlesController::class, "getMostClickedArticles"]);
-Route::get("articles/mostrecent", [ArticlesController::class, "getMostRecentArticles"]);
+Route::get("/articles/mostclicked", [ArticlesController::class, "getMostClickedArticles"]);
+Route::get("/articles/mostrecent", [ArticlesController::class, "getMostRecentArticles"]);
 Route::get("/articles/category/{category}", [ArticlesController::class, "getByCategory"]);
 Route::delete("/articles/{id}", [ArticlesController::class, "delete"]);
 Route::get("/articles/{id}", [ArticlesController::class, "getById"]);
