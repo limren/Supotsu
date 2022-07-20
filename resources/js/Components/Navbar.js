@@ -11,6 +11,8 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
             .get("http://supotsu.test/api/logout", config)
             .then((res) => console.log(res));
         setisLoggedIn(false);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
     };
     const LoggedIn = () => {
         return (

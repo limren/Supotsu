@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClicksController;
+use App\Http\Controllers\FavoritesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,3 +50,9 @@ Route::post("/clicks", [ClicksController::class, "add"]);
 
 Route::put("/clicks/{article_id}", [ClicksController::class, "increment"]);
 Route::get("/clicks/{article_id}", [ClicksController::class, "getNumberClicksByArticleID"]);
+
+
+// API Favorites
+Route::post("/favorites", [FavoritesController::class, "add"]);
+Route::get("/favorites/{user_id}", [FavoritesController::class, "getByUserId"]);
+Route::get("/favorites/articles/{user_id}", [FavoritesController::class, "getFavoritesArticlesByUserId"]);

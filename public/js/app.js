@@ -5307,9 +5307,16 @@ function Article() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "article",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-      src: "../assets/img/".concat(article.path, ".jpg"),
-      alt: "Image related to the article topic"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "article-images",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        src: "../assets/img/".concat(article.path, ".jpg"),
+        alt: "Image related to the article topic"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        className: "fav-img",
+        alt: "fav-img",
+        src: "./assets/img/heart.svg"
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
         children: article.title
@@ -5399,6 +5406,10 @@ function Browse() {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
                 className: "article-category",
                 children: article.category.toLowerCase()
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                className: "fav-img",
+                alt: "fav-img",
+                src: "./assets/img/heart.svg"
               })]
             })]
           })
@@ -5478,6 +5489,11 @@ function Category() {
       searched = _useState12[0],
       setSearched = _useState12[1];
 
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState14 = _slicedToArray(_useState13, 2),
+      searchedCategory = _useState14[0],
+      setSearchedCategory = _useState14[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://supotsu.test/api/articles/category/football").then(function (res) {
       return setFootballArticles(res.data);
@@ -5491,7 +5507,8 @@ function Category() {
   }, []);
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault(); // No need to check if the input value is empty since the "required" attribute is given to the HTML input
+    e.preventDefault();
+    setSearchedCategory(inputValue); // No need to check if the input value is empty since the "required" attribute is given to the HTML input
 
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://supotsu.test/api/articles/category/".concat(inputValue)).then(function (res) {
       return setSearchedArticles(res.data);
@@ -5521,6 +5538,10 @@ function Category() {
                 children: footballArticle.title
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                 children: ["Posted the", " ", footballArticle.created_at.slice(0, 10)]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                className: "fav-img",
+                alt: "fav-img",
+                src: "./assets/img/heart.svg"
               })]
             }, footballArticle.id);
           })
@@ -5540,6 +5561,10 @@ function Category() {
                 children: basketballArticle.title
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                 children: ["Posted the", " ", basketballArticle.created_at.slice(0, 10)]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                className: "fav-img",
+                alt: "fav-img",
+                src: "./assets/img/heart.svg"
               })]
             }, basketballArticle.id);
           })
@@ -5559,6 +5584,10 @@ function Category() {
                 children: courseArticle.title
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                 children: ["Posted the", " ", courseArticle.created_at.slice(0, 10)]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                className: "fav-img",
+                alt: "fav-img",
+                src: "./assets/img/heart.svg"
               })]
             }, courseArticle.id);
           })
@@ -5593,7 +5622,7 @@ function Category() {
         })]
       }), searched ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SubComponents_SearchedArticles__WEBPACK_IMPORTED_MODULE_2__["default"], {
         searchedArticles: searchedArticles,
-        inputValue: inputValue
+        searchedCategory: searchedCategory
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MainCategories, {})]
     })
   });
@@ -5642,6 +5671,8 @@ function Navbar(_ref) {
       return console.log(res);
     });
     setisLoggedIn(false);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   var LoggedIn = function LoggedIn() {
@@ -5891,10 +5922,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function SearchedArticles(_ref) {
-  var searchedArticles = _ref.searchedArticles;
+  var searchedArticles = _ref.searchedArticles,
+      searchedCategory = _ref.searchedCategory;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: "SearchedArticles"
+    className: "searched-category",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "container-category",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
+        children: ["Results for : ", searchedCategory]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "category",
+        children: searchedArticles.map(function (searchedArticle) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "category-article",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: "./assets/img/".concat(searchedArticle.path, ".jpg")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              children: searchedArticle.title
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+              children: ["Posted the", " ", searchedArticle.created_at.slice(0, 10)]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              className: "fav-img",
+              alt: "fav-img",
+              src: "./assets/img/heart.svg"
+            })]
+          }, searchedArticle.id);
+        })
+      })]
+    })
   });
 }
 
@@ -11488,7 +11545,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n    text-decoration: none;\r\n    font-family: \"Source Sans Pro\", sans-serif;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    background-color: #131723;\r\n}\r\n#app {\r\n    height: 100vh;\r\n}\r\n.home,\r\n.news-nav {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.index {\r\n    height: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n/* Styling related to Navbar Component */\r\n\r\n.navbar {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-evenly;\r\n    align-items: center;\r\n    margin-top: 25px;\r\n    font-size: 20px;\r\n    letter-spacing: 2.5px;\r\n}\r\n\r\n.navbar .navbar-nav ul {\r\n    display: flex;\r\n    flex-direction: row;\r\n    gap: 20px;\r\n}\r\n/* Home component */\r\n\r\n.home .news-nav {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n/* PopularNews component */\r\n\r\n.popular-news {\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.popular-news h2,\r\n.recent-news-text h2 {\r\n    font-size: 16px;\r\n    color: #3b3b3b;\r\n}\r\n.popular-news li {\r\n    font-size: 30px;\r\n    padding: 30px 0;\r\n}\r\n\r\n.news {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n.news h3 {\r\n    min-width: 250px;\r\n    max-width: 470px;\r\n    font-weight: 300;\r\n}\r\n.popular-news ul a:nth-child(2) li {\r\n    border-top: solid 1px #3b3b3b;\r\n    border-bottom: solid 1px #3b3b3b;\r\n}\r\n.news img {\r\n    width: 30px;\r\n    height: auto;\r\n}\r\n/* RecentNews component */\r\n.recent-news {\r\n    margin-right: 50px;\r\n}\r\n.recent-news ul li {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.recent-news-body {\r\n    position: relative;\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-width: 700px;\r\n}\r\n.recent-news-body h3 {\r\n    font-size: 60px;\r\n    font-weight: 600;\r\n    padding-bottom: 25px;\r\n    max-width: 450px;\r\n\r\n    line-height: 0.8;\r\n    margin-top: 20px;\r\n    margin-bottom: 7px;\r\n}\r\n.recent-news-body p {\r\n    color: grey;\r\n    max-width: 320px;\r\n}\r\n.recent-news-text {\r\n    z-index: 10;\r\n}\r\n.recent-news-img {\r\n    position: absolute;\r\n    top: -60px;\r\n    right: 0;\r\n}\r\n.recent-news-img img {\r\n    position: relative;\r\n    height: 500px;\r\n    -o-object-fit: fill;\r\n       object-fit: fill;\r\n}\r\n.recent-news-img .img-nav {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 0;\r\n    background-color: black;\r\n    padding: 10px;\r\n}\r\n.img-nav {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-direction: row;\r\n}\r\n.img-nav p {\r\n    font-size: 16px;\r\n}\r\n.img-nav img {\r\n    width: 25px;\r\n    color: grey;\r\n    height: auto;\r\n    margin-left: 5px;\r\n    margin-top: 3px;\r\n}\r\n\r\n/* Article component */\r\n.article {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    gap: 50px;\r\n}\r\n\r\n.article img {\r\n    min-width: 300px;\r\n    padding: 10px;\r\n    height: auto;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n.article h2 {\r\n    font-size: 50px;\r\n}\r\n.article .article-content {\r\n    max-width: 800px;\r\n    font-size: 25px;\r\n    padding: 50px 0;\r\n}\r\n.article .article-info {\r\n    color: grey;\r\n}\r\n.article div {\r\n    display: flex;\r\n    flex-direction: column;\r\n    max-width: 1000px;\r\n}\r\n\r\n/* Browse component */\r\n\r\n.browse-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    padding: 100px 130px;\r\n}\r\n\r\n.browse-container img {\r\n    width: 400px;\r\n    height: 225px;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n.browse-article {\r\n    display: flex;\r\n    flex-direction: row;\r\n    margin: 35px 32px;\r\n    background-color: #181d2b;\r\n}\r\n.browse-article-info {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-content: space-between;\r\n    min-width: 800px;\r\n    text-align: center;\r\n    padding: 20px 0;\r\n}\r\n.browse-article-info div {\r\n    height: 100%;\r\n}\r\n.browse-article-info h2 {\r\n    color: white;\r\n    font-weight: 500;\r\n}\r\n.browse-article-info div p {\r\n    font-weight: 400;\r\n}\r\n.browse-article-info .article-content {\r\n    max-width: 800px;\r\n    color: white;\r\n    padding: 10px 0;\r\n}\r\n.browse-article-info a {\r\n    color: #363b3f;\r\n}\r\n\r\n.article-category {\r\n    width: 100%;\r\n    padding-top: 10px;\r\n    color: #dd2124;\r\n    font-size: 14px;\r\n}\r\n/* Category component */\r\n.input-search {\r\n    height: 50px;\r\n    width: 50px;\r\n    border-style: none;\r\n    padding: 10px;\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    outline: none;\r\n    border-radius: 25px;\r\n    transition: all 0.5s ease-in-out;\r\n    background-color: #22a6b3;\r\n    padding-right: 40px;\r\n    color: #fff;\r\n}\r\n.input-search::-moz-placeholder {\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    font-weight: 100;\r\n}\r\n.input-search::placeholder {\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    font-weight: 100;\r\n}\r\n.btn-search {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-style: none;\r\n    font-size: 20px;\r\n    font-weight: bold;\r\n    outline: none;\r\n    cursor: pointer;\r\n    border-radius: 50%;\r\n    position: absolute;\r\n    right: 0px;\r\n    color: #ffffff;\r\n    background-color: transparent;\r\n    pointer-events: painted;\r\n}\r\n.btn-search:focus ~ .input-search {\r\n    width: 300px;\r\n    border-radius: 0px;\r\n    background-color: transparent;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.5);\r\n    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);\r\n}\r\n.input-search:focus {\r\n    width: 300px;\r\n    border-radius: 0px;\r\n    background-color: transparent;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.5);\r\n    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);\r\n}\r\n\r\n.btn-search img {\r\n    width: 30px;\r\n    height: auto;\r\n}\r\n\r\n:root {\r\n    --rad: 0.7rem;\r\n    --dur: 0.3s;\r\n    --color-dark: #2f2f2f;\r\n    --color-light: #fff;\r\n    --color-brand: #57bd84;\r\n    --font-fam: \"Lato\", sans-serif;\r\n    --height: 2.5rem;\r\n    --btn-width: 6rem;\r\n    --bez: cubic-bezier(0, 0, 0.43, 1.49);\r\n}\r\n\r\nform {\r\n    position: relative;\r\n    width: 15rem;\r\n    background: var(--color-brand);\r\n    border-radius: var(--rad);\r\n}\r\ninput,\r\nbutton {\r\n    height: var(--height);\r\n    font-family: var(--font-fam);\r\n    border: 0;\r\n    color: var(--color-dark);\r\n    font-size: 1.3rem;\r\n}\r\ninput[type=\"search\"] {\r\n    outline: 0;\r\n    width: 100%;\r\n    background: var(--color-light);\r\n    padding: 0 1.6rem;\r\n    border-radius: var(--rad);\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    transition: all var(--dur) var(--bez);\r\n    transition-property: width, border-radius;\r\n    z-index: 1;\r\n    position: relative;\r\n}\r\nbutton {\r\n    display: none;\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    width: var(--btn-width);\r\n    font-weight: bold;\r\n    background: var(--color-brand);\r\n    border-radius: 0 var(--rad) var(--rad) 0;\r\n}\r\ninput:not(:-moz-placeholder-shown) {\r\n    border-radius: var(--rad) 0 0 var(--rad);\r\n    width: calc(100% - var(--btn-width));\r\n}\r\ninput:not(:placeholder-shown) {\r\n    border-radius: var(--rad) 0 0 var(--rad);\r\n    width: calc(100% - var(--btn-width));\r\n}\r\ninput:not(:-moz-placeholder-shown) + button {\r\n    display: block;\r\n}\r\ninput:not(:placeholder-shown) + button {\r\n    display: block;\r\n}\r\nlabel {\r\n    position: absolute;\r\n    clip: rect(1px, 1px, 1px, 1px);\r\n    padding: 0;\r\n    border: 0;\r\n    height: 1px;\r\n    width: 1px;\r\n    overflow: hidden;\r\n}\r\n.category {\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n}\r\n.category-main-article {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-direction: column;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n    padding: 0;\r\n    margin: 0;\r\n    list-style: none;\r\n    text-decoration: none;\r\n    font-family: \"Source Sans Pro\", sans-serif;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    background-color: #131723;\r\n}\r\n#app {\r\n    height: 100vh;\r\n}\r\n.home,\r\n.news-nav {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.index {\r\n    height: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n/* Styling related to Navbar Component */\r\n\r\n.navbar {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-evenly;\r\n    align-items: center;\r\n    margin-top: 25px;\r\n    font-size: 20px;\r\n    letter-spacing: 2.5px;\r\n}\r\n\r\n.navbar .navbar-nav ul {\r\n    display: flex;\r\n    flex-direction: row;\r\n    gap: 20px;\r\n}\r\n/* Home component */\r\n\r\n.home .news-nav {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n/* PopularNews component */\r\n\r\n.popular-news {\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.popular-news h2,\r\n.recent-news-text h2 {\r\n    font-size: 16px;\r\n    color: #3b3b3b;\r\n}\r\n.popular-news li {\r\n    font-size: 30px;\r\n    padding: 30px 0;\r\n}\r\n\r\n.news {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n.news h3 {\r\n    min-width: 250px;\r\n    max-width: 470px;\r\n    font-weight: 300;\r\n}\r\n.popular-news ul a:nth-child(2) li {\r\n    border-top: solid 1px #3b3b3b;\r\n    border-bottom: solid 1px #3b3b3b;\r\n}\r\n.news img {\r\n    width: 30px;\r\n    height: auto;\r\n}\r\n/* RecentNews component */\r\n.recent-news {\r\n    margin-right: 50px;\r\n}\r\n.recent-news ul li {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.recent-news-body {\r\n    position: relative;\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-width: 700px;\r\n}\r\n.recent-news-body h3 {\r\n    font-size: 60px;\r\n    font-weight: 600;\r\n    padding-bottom: 25px;\r\n    max-width: 450px;\r\n\r\n    line-height: 0.8;\r\n    margin-top: 20px;\r\n    margin-bottom: 7px;\r\n}\r\n.recent-news-body p {\r\n    color: grey;\r\n    max-width: 320px;\r\n}\r\n.recent-news-text {\r\n    z-index: 10;\r\n}\r\n.recent-news-img {\r\n    position: absolute;\r\n    top: -60px;\r\n    right: 0;\r\n}\r\n.recent-news-img img {\r\n    position: relative;\r\n    height: 500px;\r\n    -o-object-fit: fill;\r\n       object-fit: fill;\r\n}\r\n.recent-news-img .img-nav {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 0;\r\n    background-color: black;\r\n    padding: 10px;\r\n}\r\n.img-nav {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-direction: row;\r\n}\r\n.img-nav p {\r\n    font-size: 16px;\r\n}\r\n.img-nav img {\r\n    width: 25px;\r\n    color: grey;\r\n    height: auto;\r\n    margin-left: 5px;\r\n    margin-top: 3px;\r\n}\r\n\r\n/* Article component */\r\n.article {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    gap: 50px;\r\n}\r\n\r\n.article img {\r\n    min-width: 300px;\r\n    padding: 10px;\r\n    height: auto;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n.article h2 {\r\n    font-size: 50px;\r\n}\r\n.article .article-content {\r\n    max-width: 800px;\r\n    font-size: 25px;\r\n    padding: 50px 0;\r\n}\r\n.article .article-info {\r\n    color: grey;\r\n}\r\n.article div {\r\n    display: flex;\r\n    flex-direction: column;\r\n    max-width: 1000px;\r\n}\r\n.article-images {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n}\r\n\r\n/* Browse component */\r\n\r\n.browse-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    padding: 100px 130px;\r\n}\r\n\r\n.browse-container .browse-article-info div img {\r\n    width: 400px;\r\n    height: 225px;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\r\n}\r\n.browse-article {\r\n    display: flex;\r\n    flex-direction: row;\r\n    margin: 35px 32px;\r\n    background-color: #181d2b;\r\n}\r\n.browse-article-info {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-content: space-between;\r\n    min-width: 800px;\r\n    text-align: center;\r\n    padding: 20px 0;\r\n}\r\n.browse-article-info div {\r\n    height: 100%;\r\n}\r\n.browse-article-info h2 {\r\n    color: white;\r\n    font-weight: 500;\r\n}\r\n.browse-article-info div p {\r\n    font-weight: 400;\r\n}\r\n.browse-article-info .article-content {\r\n    max-width: 800px;\r\n    color: white;\r\n    padding: 10px 0;\r\n}\r\n.browse-article-info a {\r\n    color: #363b3f;\r\n}\r\n\r\n.article-category {\r\n    width: 100%;\r\n    padding-top: 10px;\r\n    color: #dd2124;\r\n    font-size: 14px;\r\n}\r\n/* Category component */\r\n.input-search {\r\n    height: 50px;\r\n    width: 50px;\r\n    border-style: none;\r\n    padding: 10px;\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    outline: none;\r\n    border-radius: 25px;\r\n    transition: all 0.5s ease-in-out;\r\n    background-color: #22a6b3;\r\n    padding-right: 40px;\r\n    color: #fff;\r\n}\r\n.input-search::-moz-placeholder {\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    font-weight: 100;\r\n}\r\n.input-search::placeholder {\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-size: 18px;\r\n    letter-spacing: 2px;\r\n    font-weight: 100;\r\n}\r\n.btn-search {\r\n    width: 50px;\r\n    height: 50px;\r\n    border-style: none;\r\n    font-size: 20px;\r\n    font-weight: bold;\r\n    outline: none;\r\n    cursor: pointer;\r\n    border-radius: 50%;\r\n    position: absolute;\r\n    right: 0px;\r\n    color: #ffffff;\r\n    background-color: transparent;\r\n    pointer-events: painted;\r\n}\r\n.btn-search:focus ~ .input-search {\r\n    width: 300px;\r\n    border-radius: 0px;\r\n    background-color: transparent;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.5);\r\n    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);\r\n}\r\n.input-search:focus {\r\n    width: 300px;\r\n    border-radius: 0px;\r\n    background-color: transparent;\r\n    border-bottom: 1px solid rgba(255, 255, 255, 0.5);\r\n    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);\r\n}\r\n\r\n.btn-search img {\r\n    width: 30px;\r\n    height: auto;\r\n}\r\n\r\n:root {\r\n    --rad: 0.7rem;\r\n    --dur: 0.3s;\r\n    --color-dark: #2f2f2f;\r\n    --color-light: #fff;\r\n    --color-brand: #57bd84;\r\n    --font-fam: \"Lato\", sans-serif;\r\n    --height: 2.5rem;\r\n    --btn-width: 6rem;\r\n    --bez: cubic-bezier(0, 0, 0.43, 1.49);\r\n}\r\n\r\nform {\r\n    position: relative;\r\n    width: 15rem;\r\n    background: var(--color-brand);\r\n    border-radius: var(--rad);\r\n}\r\ninput,\r\nbutton {\r\n    height: var(--height);\r\n    font-family: var(--font-fam);\r\n    border: 0;\r\n    color: var(--color-dark);\r\n    font-size: 1.3rem;\r\n}\r\ninput[type=\"search\"] {\r\n    outline: 0;\r\n    width: 100%;\r\n    background: var(--color-light);\r\n    padding: 0 1.6rem;\r\n    border-radius: var(--rad);\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    transition: all var(--dur) var(--bez);\r\n    transition-property: width, border-radius;\r\n    z-index: 1;\r\n    position: relative;\r\n}\r\nbutton {\r\n    display: none;\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    width: var(--btn-width);\r\n    font-weight: bold;\r\n    background: var(--color-brand);\r\n    border-radius: 0 var(--rad) var(--rad) 0;\r\n}\r\ninput:not(:-moz-placeholder-shown) {\r\n    border-radius: var(--rad) 0 0 var(--rad);\r\n    width: calc(100% - var(--btn-width));\r\n}\r\ninput:not(:placeholder-shown) {\r\n    border-radius: var(--rad) 0 0 var(--rad);\r\n    width: calc(100% - var(--btn-width));\r\n}\r\ninput:not(:-moz-placeholder-shown) + button {\r\n    display: block;\r\n}\r\ninput:not(:placeholder-shown) + button {\r\n    display: block;\r\n}\r\nlabel {\r\n    position: absolute;\r\n    clip: rect(1px, 1px, 1px, 1px);\r\n    padding: 0;\r\n    border: 0;\r\n    height: 1px;\r\n    width: 1px;\r\n    overflow: hidden;\r\n}\r\n.category {\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n}\r\n.category .category-article {\r\n    display: flex;\r\n    align-items: center;\r\n    flex-direction: column;\r\n}\r\n\r\n.fav-img {\r\n    width: 20px;\r\n    height: auto;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -12,10 +12,17 @@ function Article() {
     let { id } = useParams();
     return (
         <div className="article">
-            <img
-                src={`../assets/img/${article.path}.jpg`}
-                alt="Image related to the article topic"
-            />
+            <div className="article-images">
+                <img
+                    src={`../assets/img/${article.path}.jpg`}
+                    alt="Image related to the article topic"
+                />
+                <img
+                    className="fav-img"
+                    alt="fav-img"
+                    src="./assets/img/heart.svg"
+                />
+            </div>
             <div>
                 <h2>{article.title}</h2>
                 <p className="article-content">{article.content}</p>

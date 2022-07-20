@@ -32,6 +32,11 @@ function Browse() {
                                     <p className="article-category">
                                         {article.category.toLowerCase()}
                                     </p>
+                                    <img
+                                        className="fav-img"
+                                        alt="fav-img"
+                                        src="./assets/img/heart.svg"
+                                    />
                                 </div>
                             </div>
                         </Link>

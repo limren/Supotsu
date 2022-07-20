@@ -186,6 +186,11 @@ body {
     flex-direction: column;
     max-width: 1000px;
 }
+.article-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Browse component */
 
@@ -198,7 +203,7 @@ body {
     padding: 100px 130px;
 }
 
-.browse-container img {
+.browse-container .browse-article-info div img {
     width: 400px;
     height: 225px;
     object-fit: cover;
@@ -367,8 +372,13 @@ label {
     flex-direction: row;
     align-items: center;
 }
-.category-main-article {
+.category .category-article {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.fav-img {
+    width: 20px;
+    height: auto;
 }

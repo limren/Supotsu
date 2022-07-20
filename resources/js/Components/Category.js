@@ -9,6 +9,7 @@ function Category() {
     const [searchedArticles, setSearchedArticles] = useState([]);
     const [inputValue, setInputValue] = useState();
     const [searched, setSearched] = useState(false);
+    const [searchedCategory, setSearchedCategory] = useState("");
     useEffect(() => {
         axios
             .get("http://supotsu.test/api/articles/category/football")
@@ -22,6 +23,7 @@ function Category() {
     }, []);
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSearchedCategory(inputValue);
         // No need to check if the input value is empty since the "required" attribute is given to the HTML input
         axios
             .get(`http://supotsu.test/api/articles/category/${inputValue}`)
@@ -54,6 +56,11 @@ function Category() {
                                             10
                                         )}
                                     </p>
+                                    <img
+                                        className="fav-img"
+                                        alt="fav-img"
+                                        src="./assets/img/heart.svg"
+                                    />
                                 </div>
                             );
                         })}
@@ -79,6 +86,11 @@ function Category() {
                                             10
                                         )}
                                     </p>
+                                    <img
+                                        className="fav-img"
+                                        alt="fav-img"
+                                        src="./assets/img/heart.svg"
+                                    />
                                 </div>
                             );
                         })}
@@ -101,6 +113,11 @@ function Category() {
                                         Posted the{" "}
                                         {courseArticle.created_at.slice(0, 10)}
                                     </p>
+                                    <img
+                                        className="fav-img"
+                                        alt="fav-img"
+                                        src="./assets/img/heart.svg"
+                                    />
                                 </div>
                             );
                         })}
@@ -128,7 +145,7 @@ function Category() {
                 {searched ? (
                     <SearchedArticles
                         searchedArticles={searchedArticles}
-                        inputValue={inputValue}
+                        searchedCategory={searchedCategory}
                     />
                 ) : (
                     <MainCategories />
