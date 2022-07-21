@@ -38,11 +38,13 @@ body {
     letter-spacing: 2.5px;
 }
 
-.navbar .navbar-nav ul {
+.navbar .navbar-nav ul,
+.not-logged {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
+
 /* Home component */
 
 .home .news-nav {

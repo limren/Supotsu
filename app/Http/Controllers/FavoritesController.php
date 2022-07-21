@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Articles;
 use App\Models\Favorites;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FavoritesController extends Controller
 {
-    //
+
 
     public function add(Request $request)
     {
         $request->validate([
-            "user_id" => "required",
-            "article_id" => "required",
+            "user_id" => ['required'],
+            "article_id" => [
+                'required',
+                Rule::unique('favorites')->where(function ($query) use ($request) {
+                    return $query->where('article_id', $request->input("article_id"))->where('user_id', $request->input("user_id"));
+                }),
+            ],
         ]);
 
         return Favorites::create($request->all());
@@ -31,7 +37,7 @@ class FavoritesController extends Controller
         foreach ($favorites_articles_id as $favorite_article_id) {
             array_push(
                 $favorites_articles,
-                Articles::where("id", "=", $favorite_article_id)->get()
+                Articles::where("id", "=", $favorite_article_id)->first()
             );
         }
         return $favorites_articles;

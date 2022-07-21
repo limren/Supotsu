@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-function Browse() {
+import AddToFavorite from "./SubComponents/AddToFavorite";
+function Browse({ user }) {
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         axios
@@ -13,11 +14,11 @@ function Browse() {
             <div className="browse-container">
                 {articles.map((article) => {
                     return (
-                        <Link key={article.id} to={`/articles/${article.id}`}>
-                            <div className="browse-article">
-                                <img src={`./assets/img/${article.path}.jpg`} />
-                                <div className="browse-article-info">
-                                    <div>
+                        <div className="browse-article" key={article.id}>
+                            <img src={`./assets/img/${article.path}.jpg`} />
+                            <div className="browse-article-info">
+                                <div>
+                                    <Link to={`/articles/${article.id}`}>
                                         <h2>{article.title}</h2>
                                         <p className="article-content">
                                             {article.content.length > 150
@@ -27,19 +28,23 @@ function Browse() {
                                                   )}... Click to read more !`
                                                 : article.content}
                                         </p>
-                                    </div>
-                                    <a>{article.created_at.slice(0, 10)}</a>
-                                    <p className="article-category">
-                                        {article.category.toLowerCase()}
-                                    </p>
-                                    <img
-                                        className="fav-img"
-                                        alt="fav-img"
-                                        src="./assets/img/heart.svg"
-                                    />
+                                    </Link>
                                 </div>
+
+                                <a>{article.created_at.slice(0, 10)}</a>
+                                <p className="article-category">
+                                    {article.category.toLowerCase()}
+                                </p>
+                                <img
+                                    className="fav-img"
+                                    alt="fav-img"
+                                    src="./assets/img/heart.svg"
+                                    onClick={() =>
+                                        AddToFavorite(article.id, user)
+                                    }
+                                />
                             </div>
-                        </Link>
+                        </div>
                     );
                 })}
             </div>

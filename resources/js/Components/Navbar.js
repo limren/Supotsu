@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
+function Navbar({ isLoggedIn, user, token, setisLoggedIn, setUser }) {
     useEffect(() => {
         console.log(isLoggedIn);
     }, []);
@@ -11,6 +11,7 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
             .get("http://supotsu.test/api/logout", config)
             .then((res) => console.log(res));
         setisLoggedIn(false);
+        setUser(null);
         localStorage.removeItem("user");
         localStorage.removeItem("token");
     };
@@ -19,6 +20,9 @@ function Navbar({ isLoggedIn, user, token, setisLoggedIn }) {
             <ul className="logged">
                 <Link to="/" onClick={() => handleLogout()}>
                     <li>HI {user.name}, LOGOUT</li>
+                </Link>
+                <Link to="/profile">
+                    <li>PROFILE</li>
                 </Link>
             </ul>
         );
