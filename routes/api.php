@@ -53,6 +53,8 @@ Route::get("/clicks/{article_id}", [ClicksController::class, "getNumberClicksByA
 
 
 // API Favorites
+Route::get("/favorites", [FavoritesController::class, "index"]);
 Route::post("/favorites", [FavoritesController::class, "add"]);
 Route::get("/favorites/{user_id}", [FavoritesController::class, "getByUserId"]);
 Route::get("/favorites/articles/{user_id}", [FavoritesController::class, "getFavoritesArticlesByUserId"]);
+Route::delete("/favorites/user/{user_id}/article/{article_id}", [FavoritesController::class, "deleteFavoriteArticleByUserId"]);

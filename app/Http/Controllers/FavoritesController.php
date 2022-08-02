@@ -10,7 +10,10 @@ use Illuminate\Validation\Rule;
 class FavoritesController extends Controller
 {
 
-
+    public function index()
+    {
+        return Favorites::all();
+    }
     public function add(Request $request)
     {
         $request->validate([
@@ -41,5 +44,9 @@ class FavoritesController extends Controller
             );
         }
         return $favorites_articles;
+    }
+    public function deleteFavoriteArticleByUserId($user_id, $article_id)
+    {
+        return Favorites::where("user_id", "=", $user_id)->where("article_id", "=", $article_id)->delete();
     }
 }

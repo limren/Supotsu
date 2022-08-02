@@ -14,6 +14,7 @@ function Article() {
         <div className="article">
             <div className="article-images">
                 <img
+                    className="article-image"
                     src={`../assets/img/${article.path}.jpg`}
                     alt="Image related to the article topic"
                 />

@@ -30,7 +30,6 @@ function Index() {
     useEffect(() => {
         localStorage.setItem("loggedIn", isLoggedIn);
     }, [isLoggedIn]);
-
     return (
         <div className="index">
             <Navbar
@@ -44,7 +43,12 @@ function Index() {
                 <Route path="/" element={<Home />} />
                 <Route
                     path="login"
-                    element={<Login setisLoggedIn={setisLoggedIn} />}
+                    element={
+                        <Login
+                            setisLoggedIn={setisLoggedIn}
+                            setUser={setUser}
+                        />
+                    }
                 />
                 <Route path="browse" element={<Browse user={user} />} />
                 <Route path="register" element={<Register />} />
@@ -54,7 +58,7 @@ function Index() {
                     path="profile"
                     element={
                         <ProtectedRoute user={user}>
-                            <Profile />
+                            <Profile user={user} />
                         </ProtectedRoute>
                     }
                 />

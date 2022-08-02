@@ -166,7 +166,7 @@ body {
     gap: 50px;
 }
 
-.article img {
+.article-image {
     min-width: 300px;
     padding: 10px;
     height: auto;
