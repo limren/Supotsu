@@ -1,6 +1,6 @@
 import React from "react";
-
-function SearchedArticles({ searchedArticles, searchedCategory }) {
+import AddToFavorite from "./AddToFavorite";
+function SearchedArticles({ searchedArticles, searchedCategory, user }) {
     return (
         <div className="searched-category">
             <div className="container-category">
@@ -10,21 +10,33 @@ function SearchedArticles({ searchedArticles, searchedCategory }) {
                         return (
                             <div
                                 key={searchedArticle.id}
-                                className="category-article"
+                                className="category-main-article"
                             >
                                 <img
+                                    className="category-image"
                                     src={`./assets/img/${searchedArticle.path}.jpg`}
                                 />
                                 <h3>{searchedArticle.title}</h3>
-                                <p>
-                                    Posted the{" "}
-                                    {searchedArticle.created_at.slice(0, 10)}
-                                </p>
-                                <img
-                                    className="fav-img"
-                                    alt="fav-img"
-                                    src="./assets/img/heart.svg"
-                                />
+                                <div className="category-article-footer">
+                                    <p>
+                                        Posted the{" "}
+                                        {searchedArticle.created_at.slice(
+                                            0,
+                                            10
+                                        )}
+                                    </p>
+                                    <img
+                                        className="fav-img"
+                                        alt="fav-img"
+                                        src="./assets/img/heart.svg"
+                                        onClick={() =>
+                                            AddToFavorite(
+                                                searchedArticle.id,
+                                                user
+                                            )
+                                        }
+                                    />
+                                </div>
                             </div>
                         );
                     })}

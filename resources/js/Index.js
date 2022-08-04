@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { useState, useEffect } from "react";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
@@ -53,7 +53,7 @@ function Index() {
                 <Route path="browse" element={<Browse user={user} />} />
                 <Route path="register" element={<Register />} />
                 <Route path="category" element={<Category user={user} />} />
-                <Route path="articles/:id" element={<Article />} />
+                <Route path="articles/:id" element={<Article user={user} />} />
                 <Route
                     path="profile"
                     element={

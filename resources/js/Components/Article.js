@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-function Article() {
+import AddToFavorite from "./SubComponents/AddToFavorite";
+function Article({ user }) {
     const [article, setArticle] = useState([]);
 
     useEffect(() => {
@@ -22,6 +23,7 @@ function Article() {
                     className="fav-img"
                     alt="fav-img"
                     src="./assets/img/heart.svg"
+                    onClick={() => AddToFavorite(article.id, user)}
                 />
             </div>
             <div>

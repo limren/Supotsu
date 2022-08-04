@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Link } from "react-router-dom";
 function Login({ setisLoggedIn, setUser }) {
     const [data, setData] = useState({
         email: "",
@@ -45,53 +46,41 @@ function Login({ setisLoggedIn, setUser }) {
         });
     };
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8" id="login">
-                    <form
-                        className="login-form"
-                        onSubmit={(e) => handleSubmit(e)}
-                    >
-                        <div className="form-group">
-                            <label htmlFor="email">Email address</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                id="email"
-                                aria-describedby="emailHelp"
-                                placeholder="Enter email"
-                                onChange={(e) => handleEmail(e)}
-                            />
-                            <small
-                                id="emailHelp"
-                                className="form-text text-muted"
-                            >
-                                We'll never share your email with anyone else.
-                            </small>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="password"
-                                placeholder="Password"
-                                onChange={(e) => handlePassword(e)}
-                            />
-                        </div>
-
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
+        <div className="login">
+            <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
+                <div className="form-element">
+                    <label htmlFor="email">Email address</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter email"
+                        onChange={(e) => handleEmail(e)}
+                    />
                 </div>
-            </div>
+                <div className="form-element">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="Enter your password"
+                        onChange={(e) => handlePassword(e)}
+                    />
+                </div>
+                <div className="login-form-footer">
+                    <button type="submit" className="btn btn-primary">
+                        Log in !
+                    </button>
+                    <div className="form-footer-split"></div>
+                    <Link to="/register" className="form-link">
+                        Create my account
+                    </Link>
+                </div>
+            </form>
         </div>
     );
 }
 
 export default Login;
-
-// if (document.getElementById("login")) {
-//     ReactDOM.createRoot(document.getElementById("login")).render(<Login />);
-// }

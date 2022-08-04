@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import addClicksToArticle from "./SubComponents/AddClicksToArticle";
 function PopularNews() {
     const [popularNews, setPopularNews] = useState([]);
     useEffect(() => {
@@ -15,7 +16,11 @@ function PopularNews() {
             <ul>
                 {popularNews.map((news) => {
                     return (
-                        <Link to={`/articles/${news.id}`} key={news.id}>
+                        <Link
+                            to={`/articles/${news.id}`}
+                            key={news.id}
+                            onClick={() => addClicksToArticle(news.id)}
+                        >
                             <li className="news">
                                 <h3>{news.title}</h3>
                                 <img src="./assets/img/arrow-white.svg" />

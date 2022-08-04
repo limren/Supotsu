@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import addClicksToArticle from "./SubComponents/AddClicksToArticle";
 function RecentNews() {
     const [recentNews, setRecentNews] = useState([]);
     useEffect(() => {
@@ -13,7 +14,11 @@ function RecentNews() {
             <ul>
                 {recentNews.map((news) => {
                     return (
-                        <Link key={news.id} to={`/articles/${news.id}`}>
+                        <Link
+                            key={news.id}
+                            to={`/articles/${news.id}`}
+                            onClick={() => addClicksToArticle(news.id)}
+                        >
                             <li>
                                 <div className="recent-news-body">
                                     <div className="recent-news-text">
